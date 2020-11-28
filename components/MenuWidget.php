@@ -68,6 +68,7 @@ class MenuWidget extends Widget
         foreach ($tree as $category) {
             $str .= $this->catToTemplate($category);
         }
+
         return $str;
     }
 
@@ -78,5 +79,4 @@ class MenuWidget extends Widget
 
         return ob_get_clean();
     }
-
 }
