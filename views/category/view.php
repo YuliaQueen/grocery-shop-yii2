@@ -1,9 +1,12 @@
+<?php /** @var object $category */ ?>
+
 <!-- products-breadcrumb -->
 <div class="products-breadcrumb">
     <div class="container">
         <ul>
-            <li><i class="fa fa-home" aria-hidden="true"></i><a href="index.html">Home</a><span>|</span></li>
-            <li>Branded Foods</li>
+            <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php \yii\helpers\Url::home(); ?>">Home</a><span>|</span>
+            </li>
+            <li><?= $category->title; ?></li>
         </ul>
     </div>
 </div>
@@ -125,6 +128,14 @@
                         </div>
                     <?php endforeach; ?>
                     <div class="clearfix"></div>
+                    <div class="col-md-12 pagination__custom">
+                        <?= /** @var object $pages */
+                        \yii\widgets\LinkPager::widget(
+                            [
+                                'pagination' => $pages,
+                            ]
+                        ) ?>
+                    </div>
                 </div>
             <?php endif; ?>
         </div>
