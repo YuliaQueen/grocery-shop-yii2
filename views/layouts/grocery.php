@@ -1,15 +1,12 @@
 <?php
 
 /* @var $this View */
+
 /* @var $content string */
 
-use app\widgets\Alert;
-use yii\helpers\Html;
-use yii\bootstrap\Nav;
-use yii\bootstrap\NavBar;
-use yii\web\View;
-use yii\widgets\Breadcrumbs;
 use app\assets\AppAsset;
+use yii\helpers\Html;
+use yii\web\View;
 
 AppAsset::register($this);
 ?>
@@ -34,24 +31,43 @@ AppAsset::register($this);
         <a href="products.html">Today's special Offers !</a>
     </div>
     <div class="w3l_search">
-        <form action="#" method="post">
-            <input type="text" name="Product" value="Search a product..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
+        <form action="<?= \yii\helpers\Url::to(['category/search']); ?>" method="get">
+            <input type="text" name="q" value="Search a product..." onfocus="this.value = '';"
+                   onblur="if (this.value == '') {this.value = 'Search a product...';}" required="">
             <input type="submit" value=" ">
         </form>
     </div>
     <div class="product_list_header">
-        <form action="#" method="post" class="last">
-            <fieldset>
-                <input type="hidden" name="cmd" value="_cart" />
-                <input type="hidden" name="display" value="1" />
-                <input type="submit" name="submit" value="View your cart" class="button" />
-            </fieldset>
-        </form>
+        <!-- Button trigger modal -->
+        <button type="button" class="button" data-toggle="modal" data-target="#modal-cart">
+            <span class="cart-sum">Cart is empty</span>
+        </button>
+        <!-- Modal -->
+        <div class="modal fade" id="modal-cart" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Корзина</h4>
+                    </div>
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Продолжить покупки</button>
+                        <a href="<?= \yii\helpers\Url::to('cart/view'); ?>" type="button" class="btn btn-success">Оформить
+                            заказ</a>
+                        <button onclick="clearCart()" type="button" class="btn btn-danger">Очистить корзину</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <div class="w3l_header_right">
         <ul>
             <li class="dropdown profile_details_drop">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span class="caret"></span></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user" aria-hidden="true"></i><span
+                            class="caret"></span></a>
                 <div class="mega-dropdown-menu">
                     <div class="w3ls_vegetables">
                         <ul class="dropdown-menu drp-mnu">
@@ -66,7 +82,7 @@ AppAsset::register($this);
     <div class="w3l_header_right1">
         <h2><a href="mail.html">Contact Us</a></h2>
     </div>
-    <div class="clearfix"> </div>
+    <div class="clearfix"></div>
 </div>
 <div class="logo_products">
     <div class="container">
@@ -84,10 +100,11 @@ AppAsset::register($this);
         <div class="w3ls_logo_products_left1">
             <ul class="phone_email">
                 <li><i class="fa fa-phone" aria-hidden="true"></i>(+0123) 234 567</li>
-                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@grocery.com</a></li>
+                <li><i class="fa fa-envelope-o" aria-hidden="true"></i><a href="mailto:store@grocery.com">store@grocery.com</a>
+                </li>
             </ul>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 <!-- //header -->
@@ -102,11 +119,12 @@ AppAsset::register($this);
         </div>
         <div class="w3agile_newsletter_right">
             <form action="#" method="post">
-                <input type="email" name="Email" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" required="">
+                <input type="email" name="Email" value="Email" onfocus="this.value = '';"
+                       onblur="if (this.value == '') {this.value = 'Email';}" required="">
                 <input type="submit" value="subscribe now">
             </form>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
     </div>
 </div>
 <!-- //newsletter -->
@@ -143,20 +161,22 @@ AppAsset::register($this);
         <div class="col-md-3 w3_footer_grid">
             <h3>twitter posts</h3>
             <ul class="w3_footer_grid_list1">
-                <li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam <a href="#">http://sd.ds/13jklf#</a>
+                <li><label class="fa fa-twitter" aria-hidden="true"></label><i>01 day ago</i><span>Non numquam <a
+                                href="#">http://sd.ds/13jklf#</a>
 						eius modi tempora incidunt ut labore et
 						<a href="#">http://sd.ds/1389kjklf#</a>quo nulla.</span></li>
-                <li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam <a href="#">http://fd.uf/56hfg#</a>
+                <li><label class="fa fa-twitter" aria-hidden="true"></label><i>02 day ago</i><span>Con numquam <a
+                                href="#">http://fd.uf/56hfg#</a>
 						eius modi tempora incidunt ut labore et
 						<a href="#">http://fd.uf/56hfg#</a>quo nulla.</span></li>
             </ul>
         </div>
-        <div class="clearfix"> </div>
+        <div class="clearfix"></div>
         <div class="agile_footer_grids">
             <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
                 <div class="w3_footer_grid_bottom">
                     <h4>100% secure payments</h4>
-                    <img src="images/card.png" alt=" " class="img-responsive" />
+                    <img src="images/card.png" alt=" " class="img-responsive"/>
                 </div>
             </div>
             <div class="col-md-3 w3_footer_grid agile_footer_grids_w3_footer">
@@ -171,7 +191,7 @@ AppAsset::register($this);
                     </ul>
                 </div>
             </div>
-            <div class="clearfix"> </div>
+            <div class="clearfix"></div>
         </div>
         <div class="wthree_footer_copy">
             <p>© 2016 Grocery Store. All rights reserved | Design by <a href="http://w3layouts.com/">W3layouts</a></p>

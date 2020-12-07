@@ -116,14 +116,9 @@ if (!empty($offers)): ?>
                                                 </h4>
                                             </div>
                                             <div class="snipcart-details top_brand_home_details">
-                                                <form action="checkout.html" method="post">
-                                                    <fieldset>
-                                                        <input type="submit" name="submit" value="Add to cart"
-                                                               class="button"/>
-                                                    </fieldset>
-
-                                                </form>
-
+                                                <a class="button add-to-cart" href="<?= \yii\helpers\Url::to(
+                                                    ['cart/add', 'id' => $offer->id]
+                                                ); ?>" data-id="<?= $offer->id; ?>">Add to cart</a>
                                             </div>
                                         </div>
                                     </figure>

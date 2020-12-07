@@ -1,6 +1,4 @@
-<?php /** @var object $category */
-
-use yii\helpers\Html; ?>
+<?php /** @var object $category */ ?>
 
 <!-- products-breadcrumb -->
 <div class="products-breadcrumb">
@@ -8,7 +6,7 @@ use yii\helpers\Html; ?>
         <ul>
             <li><i class="fa fa-home" aria-hidden="true"></i><a href="<?php \yii\helpers\Url::home(); ?>">Home</a><span>|</span>
             </li>
-            <li><?= $category->title; ?></li>
+            <li>Поиск</li>
         </ul>
     </div>
 </div>
@@ -69,10 +67,10 @@ use yii\helpers\Html; ?>
             <div class="clearfix"></div>
         </div>
         <div class="w3ls_w3l_banner_nav_right_grid">
-            <h3><?= $category->title; ?></h3>
+            <h3>Поиск: <?= \yii\helpers\Html::encode($q) ?></h3>
             <?php if (empty($products)): ?>
                 <div class="w3ls_w3l_banner_nav_right_grid1">
-                    <h6>Здесь пока нет товаров</h6>
+                    <h6>Ничего не найдено</h6>
                 </div>
             <?php else: ?>
                 <div class="w3ls_w3l_banner_nav_right_grid1">
@@ -82,7 +80,7 @@ use yii\helpers\Html; ?>
                                 <div class="agile_top_brand_left_grid w3l_agile_top_brand_left_grid">
                                     <?php if ($product->is_offer): ?>
                                         <div class="agile_top_brand_left_grid_pos">
-                                            <?= Html::img(
+                                            <?= \yii\helpers\Html::img(
                                                 '@web/images/offer.png',
                                                 ['alt' => 'offer', 'class' => 'img-responsive']
                                             ); ?>
@@ -93,9 +91,7 @@ use yii\helpers\Html; ?>
                                         <figure>
                                             <div class="snipcart-item block">
                                                 <div class="snipcart-thumb">
-                                                    <a href="<?= \yii\helpers\Url::to(
-                                                        ['product/view', 'id' => $product->id]
-                                                    ) ?>"><?= Html::img(
+                                                    <a href="single.html"><?= \yii\helpers\Html::img(
                                                             "@web/images/{$product->img}",
                                                             ['alt' => "{$product->title}"]
                                                         ) ?></a>

@@ -16,6 +16,16 @@ $config = [
     ],
     'language' => 'ru',
     'components' => [
+        'assetManager' => [
+            'bundles' => [
+                'yii\web\JqueryAsset' => [
+                    'sourcePath' => null,   // не опубликовывать комплект
+                    'js' => [
+                        'js/jquery-1.11.1.min.js',
+                    ]
+                ],
+            ],
+        ],
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'tHt9JfKojKlJJ-tGOZ2lzMrh3qgR4HmR',
@@ -54,7 +64,7 @@ $config = [
                 'category/<id:\d+>/page/<page:\d+>' => 'category/view',
                 'category/<id:\d+>' => 'category/view',
                 'product/<id:\d+>' => 'product/view',
-
+                'search' => 'category/search',
             ],
         ],
     ],
