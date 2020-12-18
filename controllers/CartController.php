@@ -73,13 +73,24 @@ class CartController extends AppController
             $transaction = Yii::$app->getDb()->beginTransaction();
 
             if (!$order->save() || !$order_product->saveOrderProducts($session['cart'], $order->id)) {
-                debug($order, 1);
 
                 Yii::$app->session->setFlash('error', 'Ошибка оформления заказа');
                 $transaction->rollBack();
             } else {
                 $transaction->commit();
                 Yii::$app->session->setFlash('success', 'Заказ принят');
+
+                try {
+                    Yii::$app->mailer->compose('order', ['session' => $session])
+                        ->setFrom([Yii::$app->params['senderEmail'] => Yii::$app->params['senderName']])
+                        ->setTo([$order->email, Yii::$app->params['adminEmail']])
+                        ->setSubject('Заказ на сайте')
+                        ->send();
+                } catch (\Swift_TransportException $e) {
+                    debug($e, 1);
+                }
+
+
                 $session->remove('cart');
                 $session->remove('cart.qty');
                 $session->remove('cart.sum');
